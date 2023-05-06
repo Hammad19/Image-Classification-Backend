@@ -31,23 +31,28 @@ def classify_animal():
     # Get the label of the top prediction
     label = top_prediction[1]
     
-  
     prediction = np.argmax(predictions)
 
     if 'cat' in label:
-        animal_type = 'cat'
+        animal_category = 'cat'
+        animal_breed = label
     elif prediction in [282, 283, 284]:
-        animal_type = 'cat'
+        animal_category = 'cat'
+        animal_breed = label
     elif prediction in range(151, 269):
-        animal_type = 'dog'
+        animal_category = 'dog'
+        animal_breed = label
     else:
-        animal_type = 'unknown'
-
+        animal_category = 'unknown'
+        animal_breed = 'unknown'
+    
+    # Create a dictionary with the response
+    response_dict = {'category': animal_category, 'breed': animal_breed}
+    
+    # Return the response as JSON
+    return jsonify(response_dict)
 
     
-    # Return the animal type and the label as a string
-    return f"{animal_type}: {label}"
-
 @app.route('/classify_image', methods=['POST'])
 def classify_image():
     # Get the image from the request
