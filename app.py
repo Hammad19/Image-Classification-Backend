@@ -30,6 +30,10 @@ def classify_animal():
     
     # Get the label of the top prediction
     label = top_prediction[1]
+
+
+    # Get the accuracy of the top prediction
+    accuracy = float(top_prediction[2])
     
     prediction = np.argmax(predictions)
 
@@ -47,7 +51,7 @@ def classify_animal():
         animal_breed = 'unknown'
     
     # Create a dictionary with the response
-    response_dict = {'category': animal_category, 'breed': animal_breed}
+    response_dict = {'category': animal_category, 'breed': animal_breed, 'accuracy':accuracy }
     
     # Return the response as JSON
     return jsonify(response_dict)
