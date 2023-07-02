@@ -18,6 +18,8 @@ model = VGG16(weights='imagenet')
 def classify_animal():
     # Get the image from the request
     image = request.files['image'].read()
+
+    print(image);
     
     # Preprocess the image
     image = preprocess_image(image)
